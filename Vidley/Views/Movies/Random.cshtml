@@ -1,0 +1,51 @@
+﻿@model Vidley.ViewModels.MovieListViewModel
+
+@{
+    ViewBag.Title = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*
+Redundant page     
+
+*@
+
+
+<h2>Movies</h2>
+
+<table class="data">
+    <tr>
+        <td>Movie</td>
+    </tr>
+    @foreach (var movie in Model.MovieList)
+    {
+        <tr><td>@Html.ActionLink(movie.Name, "Details/" + movie.Id, "Movies")</td></tr>
+    }
+</table>
+
+
+
+
+@*
+                This is a comment
+                on multiple ples
+                    var className = Model.Customers.Count > 0 ? "popular" : null;
+            }
+
+            <h2 class="@className">@Model.Movie.Name</h2>
+            @if(Model.Customers.Count == 0)
+
+        {
+            <text>No one as rented this movie before.</text>
+        }
+        @{
+        <ul>
+            @foreach (var movie in Model.MovieList)
+            {
+                <li>@Html.ActionLink(movie.Name,"Details/"+movie.Id,"Movies")</li>
+            }
+        </ul>
+    }
+
+
+*@
