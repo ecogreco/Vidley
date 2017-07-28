@@ -5,37 +5,49 @@ using System.Web;
 using System.Web.Mvc;
 using Vidley.Models;
 using Vidley.ViewModels;
+using System.Data.Entity;
 
 namespace Vidley.Controllers
 {
     public class MoviesController : Controller
     {
-        public List<Movie> getMovies()
-        {
-            var mList = new List<Movie>
-            {
-                new Movie{Id = 1,Name="Shrek!"},
-                new Movie{Id = 2,Name = "Wall-E"}
-            };
+        private ApplicationDbContext _context;
 
-            return mList;
+       public MoviesController()
+        {
+            _context = new ApplicationDbContext();
         }
-        
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
 
         public ActionResult Index()
         {
-            var mList = getMovies();
-            var movieList = new MovieListViewModel { MovieList = mList };
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
 
-            return View(movieList);
+            return View(movies);
         }
 
-        public ActionResult Details(int Id)
+        public ActionResult Details(int id)
         {
-            var mList = getMovies();
-            var movie = mList[Id - 1];
-            return View(movie);
+            var movies = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+
+            return View(movies);
         }
+
+
+        //public List<Movie> getMovies()
+        //{
+        //    var mList = new List<Movie>
+        //    {
+        //        new Movie{Id = 1,Name="Shrek!"},
+        //        new Movie{Id = 2,Name = "Wall-E"}
+        //    };
+
+        //    return mList;
+        //}
 
 
 

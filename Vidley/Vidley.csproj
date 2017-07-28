@@ -228,9 +228,62 @@
     <Compile Include="Migrations\201707272157106_updateMembershipTypeTable.Designer.cs">
       <DependentUpon>201707272157106_updateMembershipTypeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707272228569_addBirthday.cs" />
+    <Compile Include="Migrations\201707272228569_addBirthday.Designer.cs">
+      <DependentUpon>201707272228569_addBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707272229539_insertBirthday.cs" />
+    <Compile Include="Migrations\201707272229539_insertBirthday.Designer.cs">
+      <DependentUpon>201707272229539_insertBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707272233129_nullBirthday.cs" />
+    <Compile Include="Migrations\201707272233129_nullBirthday.Designer.cs">
+      <DependentUpon>201707272233129_nullBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707272240180_fixBirthday.cs" />
+    <Compile Include="Migrations\201707272240180_fixBirthday.Designer.cs">
+      <DependentUpon>201707272240180_fixBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707272241262_IDTWOBIRTHDAYNULL.cs" />
+    <Compile Include="Migrations\201707272241262_IDTWOBIRTHDAYNULL.Designer.cs">
+      <DependentUpon>201707272241262_IDTWOBIRTHDAYNULL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707272315084_AddGenre.cs" />
+    <Compile Include="Migrations\201707272315084_AddGenre.Designer.cs">
+      <DependentUpon>201707272315084_AddGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707272316241_PopulateGenreTable.cs" />
+    <Compile Include="Migrations\201707272316241_PopulateGenreTable.Designer.cs">
+      <DependentUpon>201707272316241_PopulateGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707272325573_UpdateMovieTable.cs" />
+    <Compile Include="Migrations\201707272325573_UpdateMovieTable.Designer.cs">
+      <DependentUpon>201707272325573_UpdateMovieTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707272340436_UpdateMovieTableAgain.cs" />
+    <Compile Include="Migrations\201707272340436_UpdateMovieTableAgain.Designer.cs">
+      <DependentUpon>201707272340436_UpdateMovieTableAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707272351099_AddNumberInStock.cs" />
+    <Compile Include="Migrations\201707272351099_AddNumberInStock.Designer.cs">
+      <DependentUpon>201707272351099_AddNumberInStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707272355164_SETNumberInStock.cs" />
+    <Compile Include="Migrations\201707272355164_SETNumberInStock.Designer.cs">
+      <DependentUpon>201707272355164_SETNumberInStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707280022103_AddDateAdded.cs" />
+    <Compile Include="Migrations\201707280022103_AddDateAdded.Designer.cs">
+      <DependentUpon>201707280022103_AddDateAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707280022555_InstertDateAdded.cs" />
+    <Compile Include="Migrations\201707280022555_InstertDateAdded.Designer.cs">
+      <DependentUpon>201707280022555_InstertDateAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -348,6 +401,45 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707272157106_updateMembershipTypeTable.resx">
       <DependentUpon>201707272157106_updateMembershipTypeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272228569_addBirthday.resx">
+      <DependentUpon>201707272228569_addBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272229539_insertBirthday.resx">
+      <DependentUpon>201707272229539_insertBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272233129_nullBirthday.resx">
+      <DependentUpon>201707272233129_nullBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272240180_fixBirthday.resx">
+      <DependentUpon>201707272240180_fixBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272241262_IDTWOBIRTHDAYNULL.resx">
+      <DependentUpon>201707272241262_IDTWOBIRTHDAYNULL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272315084_AddGenre.resx">
+      <DependentUpon>201707272315084_AddGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272316241_PopulateGenreTable.resx">
+      <DependentUpon>201707272316241_PopulateGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272325573_UpdateMovieTable.resx">
+      <DependentUpon>201707272325573_UpdateMovieTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272340436_UpdateMovieTableAgain.resx">
+      <DependentUpon>201707272340436_UpdateMovieTableAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272351099_AddNumberInStock.resx">
+      <DependentUpon>201707272351099_AddNumberInStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272355164_SETNumberInStock.resx">
+      <DependentUpon>201707272355164_SETNumberInStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707280022103_AddDateAdded.resx">
+      <DependentUpon>201707280022103_AddDateAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707280022555_InstertDateAdded.resx">
+      <DependentUpon>201707280022555_InstertDateAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

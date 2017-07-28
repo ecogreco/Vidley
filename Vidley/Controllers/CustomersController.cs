@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidley.Models;
 using Vidley.ViewModels;
+using System.Data.Entity;
 
 namespace Vidley.Controllers
 {
@@ -35,7 +35,7 @@ namespace Vidley.Controllers
 
         public ActionResult Details(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
             if(customer == null)
             {
                 return HttpNotFound();
