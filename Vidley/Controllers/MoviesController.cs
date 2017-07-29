@@ -11,16 +11,69 @@ namespace Vidley.Controllers
 {
     public class MoviesController : Controller
     {
-        private ApplicationDbContext _context;
+        private ApplicationDbContext _context; //the _context variable is the object that calls the database
 
-       public MoviesController()
+       public MoviesController() //constructor class for the CustomerController and assigns the _context ApplicationDbContext
         {
             _context = new ApplicationDbContext();
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void Dispose(bool disposing) //nessescary method for the database object
         {
             _context.Dispose();
+        }
+
+        public ActionResult New() //creates new movie
+        {
+            var genres = _context.Genres.ToList();
+            var viewModel = new MovieFormViewModel() //the CustomerFormViewModel is suppose to be an object that includes a single customer but a list of membership types 
+            {
+                Genres = genres,
+                Title = "New Movie"       
+            };
+
+            return View("MovieForm",viewModel);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            if( movie == null)
+            {
+                return HttpNotFound();
+            }
+
+            var ViewModel = new MovieFormViewModel() //the CustomerFormViewModel is suppose to be an object that includes a single customer but a list of membership types 
+            {
+                Genres = _context.Genres.ToList(),
+                Movie = movie,
+                Title = "Edit Movie"
+            };
+
+            return View("MovieForm", ViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if(movie.Id==0)
+            {
+                movie.DateAdded = DateTime.Now;
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDB = _context.Movies.Single(m => m.Id == movie.Id);
+                movieInDB.Name = movie.Name;
+                movieInDB.ReleaseDate = movie.ReleaseDate;
+                movieInDB.GenreId = movie.GenreId;
+                movieInDB.NumberInStock = movie.NumberInStock;
+
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Movies");
         }
 
         public ActionResult Index()
@@ -38,6 +91,10 @@ namespace Vidley.Controllers
         }
 
 
+
+
+
+        //Irrelevant Code
         //public List<Movie> getMovies()
         //{
         //    var mList = new List<Movie>
