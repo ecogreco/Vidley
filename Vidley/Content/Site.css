@@ -3,9 +3,9 @@
     padding-bottom: 20px;
 }
 
-table, td, td {
+/*table, td, td {
     border: 1px solid grey;
-}
+}*/
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -26,7 +26,14 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
 
+.field-validation-error{
+    color: red;
+}
+
+.input-validation-error {
+    border: 2px solid red;
 }
 
 

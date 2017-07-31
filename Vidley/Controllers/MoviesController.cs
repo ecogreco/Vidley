@@ -28,8 +28,7 @@ namespace Vidley.Controllers
             var genres = _context.Genres.ToList();
             var viewModel = new MovieFormViewModel() //the CustomerFormViewModel is suppose to be an object that includes a single customer but a list of membership types 
             {
-                Genres = genres,
-                Title = "New Movie"       
+                Genres = genres,     
             };
 
             return View("MovieForm",viewModel);
@@ -44,20 +43,29 @@ namespace Vidley.Controllers
                 return HttpNotFound();
             }
 
-            var ViewModel = new MovieFormViewModel() //the CustomerFormViewModel is suppose to be an object that includes a single customer but a list of membership types 
+            var ViewModel = new MovieFormViewModel(movie) //the CustomerFormViewModel is suppose to be an object that includes a movie from teh database and a list of Genres
             {
-                Genres = _context.Genres.ToList(),
-                Movie = movie,
-                Title = "Edit Movie"
+                Genres = _context.Genres.ToList(),              
             };
 
             return View("MovieForm", ViewModel);
         }
 
-        [HttpPost]
+        [HttpPost] //nessescary property for an action
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
-            if(movie.Id==0)
+            if(!ModelState.IsValid) // If there is no input or valid input from the user
+            {
+                var viewModel = new MovieFormViewModel(movie) //this method is for a pre existing movie
+                {
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("MovieForm", viewModel); // passes in the view model and brings the customer form 
+            }
+
+            if(movie.Id==0) // the Id == 0 indicates that there is no customer in the database selected and therefore a new customer is being added 
             {
                 movie.DateAdded = DateTime.Now;
                 _context.Movies.Add(movie);
@@ -73,7 +81,7 @@ namespace Vidley.Controllers
             }
 
             _context.SaveChanges();
-            return RedirectToAction("Index", "Movies");
+            return RedirectToAction("Index", "Movies"); //the redirect method returns the user to the index page
         }
 
         public ActionResult Index()

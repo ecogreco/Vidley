@@ -24,6 +24,7 @@ namespace Vidley.Models
         public byte GenreId { get; set; }
 
         [Required]
+        [Range(1, 20)]
         [Display(Name ="Number in Stock")]
         public int NumberInStock { get; set; }
 

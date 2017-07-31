@@ -29,6 +29,7 @@ namespace Vidley.Controllers
             var membershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new CustomerFormViewModel //the CustomerFormViewModel is suppose to be an object that includes a single customer but a list of membership types 
             {
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes //the customer is null(being a new customer), and the MembershipTypes is the list object that was declared as membershipTypes
             };
             return View("CustomerForm",viewModel); //the first paramenter is the name of the view, while the second is the object being passed in 
@@ -52,9 +53,21 @@ namespace Vidley.Controllers
         }
 
         [HttpPost] //nessescary property for an action
+        [ValidateAntiForgeryToken]//uses anti-forgery token to protect data on website
         public ActionResult Save(Customer customer) //saves information in database, either updates customer orr creates new customer
         {
-            if(customer == null) //if it is not a pre-existing customer a new customer is created
+            if(!ModelState.IsValid) // If there is no input or valid input from the user
+            {
+                var viewModel = new CustomerFormViewModel()
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+
+                return View("CustomerForm", viewModel); // passes in the view model and brings the customer form 
+            }
+
+            if(customer.Id == 0) //if it is not a pre-existing customer a new customer is created
             {
                 _context.Customers.Add(customer);
             }
