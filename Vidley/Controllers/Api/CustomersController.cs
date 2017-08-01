@@ -1,14 +1,16 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Vidley.Dtos;
 using Vidley.Models;
 
 namespace Vidley.Controllers.Api
 {
-    public class CustomersController : ApiController
+    public class CustomersController : ApiController //when you use API you must included GlobalConfiguration.Configure(WebApiConfig.Register) and later on Mapper.Initialize(c => c.AddProfile<MapingProfile>()) in the global.asax.cs 
     {
         private ApplicationDbContext _context;
 
@@ -18,41 +20,43 @@ namespace Vidley.Controllers.Api
         }
 
         //GET/API/Customers 
-        public IEnumerable<Customer> GetCustomers() //returns list of customers
+        public IEnumerable<CustomerDto> GetCustomers() //returns list of customers
         {
-            return _context.Customers.ToList();
+            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>); //this uses a select list because of the fact that this method returns a list of objects
         }
 
         //GET /api/customers/1
-        public Customer GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id); // in case the customer is null
             if (customer == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
-            return customer;
+            return Ok(Mapper.Map<Customer, CustomerDto>(customer)) ; //this returns a okay method with the DTO by using the mapper.map method, the Customer is the source and the (customer) is the source object, and it is being mapped to a CustomerDto
         }
 
         //POST /api / customers
-        [HttpPost]
-        public Customer CreateCustomer(Customer customer)
+        [HttpPost] // attribute that indicates a resource is being created 
+        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
             if(!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
 
+            var customer = Mapper.Map<CustomerDto, Customer>(customerDto); //this creates a customer object and then passed into the actual database
             _context.Customers.Add(customer);
             _context.SaveChanges();
+            customerDto.Id = customer.Id; // when a new customer is created in the database it is nessescary to create an ID for the DTO object 
 
-            return customer;
+            return Created(new Uri(Request.RequestUri+"/"+customer.Id),customerDto);
         }
 
         //PUT /customer /1
-        [HttpPut]
-        public void UpdateCustomer(int id, Customer customer)
+        [HttpPut] //attribute that indicates that a resources is being changed 
+        public void UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
@@ -66,16 +70,13 @@ namespace Vidley.Controllers.Api
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            customerInDB.Name = customer.Name;
-            customerInDB.Birthday = customer.Birthday;
-            customerInDB.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
-            customerInDB.MembershipTypeId = customer.MembershipTypeId;
+            Mapper.Map(customerDto, customerInDB); //in this care of the normal () parameters, the first object is the source object, and the second object is the target object, there are no <> generics because of this
             _context.SaveChanges();
 
         }
 
         //DELETE /Customer/api /1
-        [HttpDelete]
+        [HttpDelete] //attribute that indicates that a resources is being removed 
         public void DeleteCustomer(int id)
         {
             if (!ModelState.IsValid)
