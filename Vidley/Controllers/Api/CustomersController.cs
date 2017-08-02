@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -22,7 +23,10 @@ namespace Vidley.Controllers.Api
         //GET/API/Customers 
         public IEnumerable<CustomerDto> GetCustomers() //returns list of customers
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>); //this uses a select list because of the fact that this method returns a list of objects
+            return _context.Customers
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>); //this uses a select list because of the fact that this method returns a list of objects
         }
 
         //GET /api/customers/1

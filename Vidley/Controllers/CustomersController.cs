@@ -86,10 +86,7 @@ namespace Vidley.Controllers
 
         public ActionResult Index() //list of customers
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList(); //passes in the list of customers and the Include function includes MembershipType 
-
-
-            return View(customers); //if there is one parameter then the default view is the name on the control method, and the only parameter would be the object being passed in 
+            return View(); //if there is one parameter then the default view is the name on the control method, and the only parameter would be the object being passed in 
         }
 
         public ActionResult Details(int id) //returns the details of a customer, the parameters of this method is suppose to match the Id of the customer

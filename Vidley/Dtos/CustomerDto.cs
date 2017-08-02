@@ -17,8 +17,9 @@ namespace Vidley.Dtos
 
         public bool IsSubscribedToNewsletter { get; set; }
         public byte MembershipTypeId { get; set; }
+        public MembershipTypeDto MembershipType { get; set; }
 
-       // [Min18YearsIfAMember] //this class is created and uses the interface for validation attribute to validate if the date of birth is 18 years or older to be a member
+        // [Min18YearsIfAMember] //this class is created and uses the interface for validation attribute to validate if the date of birth is 18 years or older to be a member
         public DateTime? Birthday { get; set; }
     }
 }
