@@ -324,6 +324,10 @@
     <Compile Include="Migrations\201708022038573_tryingToFixLoadingProblem.Designer.cs">
       <DependentUpon>201708022038573_tryingToFixLoadingProblem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708022153129_SeedUsers.cs" />
+    <Compile Include="Migrations\201708022153129_SeedUsers.Designer.cs">
+      <DependentUpon>201708022153129_SeedUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -682,6 +686,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708022038573_tryingToFixLoadingProblem.resx">
       <DependentUpon>201708022038573_tryingToFixLoadingProblem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708022153129_SeedUsers.resx">
+      <DependentUpon>201708022153129_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
