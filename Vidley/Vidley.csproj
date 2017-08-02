@@ -210,6 +210,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
+    <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -318,6 +319,10 @@
     <Compile Include="Migrations\201708021658173_addNames.cs" />
     <Compile Include="Migrations\201708021658173_addNames.Designer.cs">
       <DependentUpon>201708021658173_addNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708022038573_tryingToFixLoadingProblem.cs" />
+    <Compile Include="Migrations\201708022038573_tryingToFixLoadingProblem.Designer.cs">
+      <DependentUpon>201708022038573_tryingToFixLoadingProblem.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -674,6 +679,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708021658173_addNames.resx">
       <DependentUpon>201708021658173_addNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708022038573_tryingToFixLoadingProblem.resx">
+      <DependentUpon>201708022038573_tryingToFixLoadingProblem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
