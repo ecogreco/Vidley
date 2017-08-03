@@ -154,7 +154,8 @@ namespace Vidley.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email,
                     Email = model.Email,
-                    DrivingLincense = model.DrivingLicense};
+                    DrivingLincense = model.DrivingLicense,
+                    Phone = model.Phone};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -373,7 +374,8 @@ namespace Vidley.Controllers
                 }
                 var user = new ApplicationUser { UserName = model.Email,
                     Email = model.Email,
-                    DrivingLincense = model.DrivingLicense};
+                    DrivingLincense = model.DrivingLicense,
+                    Phone = model.Phone};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
