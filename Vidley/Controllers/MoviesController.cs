@@ -23,6 +23,7 @@ namespace Vidley.Controllers
             _context.Dispose();
         }
 
+        [Authorize(Roles =RoleName.CanManageMovies)]
         public ActionResult New() //creates new movie
         {
             var genres = _context.Genres.ToList();
@@ -43,7 +44,7 @@ namespace Vidley.Controllers
                 return HttpNotFound();
             }
 
-            var ViewModel = new MovieFormViewModel(movie) //the CustomerFormViewModel is suppose to be an object that includes a movie from teh database and a list of Genres
+            var ViewModel = new MovieFormViewModel(movie) //the CustomerFormViewModel is suppose to be an object that includes a movie from the database and a list of Genres
             {
                 Genres = _context.Genres.ToList(),              
             };
@@ -86,7 +87,13 @@ namespace Vidley.Controllers
 
         public ActionResult Index()
         { 
-            return View();
+            if(User.IsInRole(RoleName.CanManageMovies))
+            {
+                return View("List");
+            }
+
+            return View("ReadOnlyList");
+
         }
 
         public ActionResult Details(int id)
