@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Vidley.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Vidley.ViewModels;
 
 namespace Vidley.Controllers
 {
