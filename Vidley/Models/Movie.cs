@@ -30,5 +30,7 @@ namespace Vidley.Models
 
         [Required]
         public DateTime DateAdded { get; set; }
+
+        public int NumberAvailable { get; set; }
     }
 }

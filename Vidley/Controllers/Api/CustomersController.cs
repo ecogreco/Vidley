@@ -21,12 +21,23 @@ namespace Vidley.Controllers.Api
         }
 
         //GET/API/Customers 
-        public IEnumerable<CustomerDto> GetCustomers() //returns list of customers
+        public IHttpActionResult GetCustomers(string query = null) //returns list of customers
         {
-            return _context.Customers
-                .Include(c => c.MembershipType)
+            var customersQuery = _context.Customers
+                .Include(c => c.MembershipType);
+
+            if(!String.IsNullOrWhiteSpace(query))
+            {
+                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+            }
+
+            var customersDto = customersQuery
                 .ToList()
-                .Select(Mapper.Map<Customer, CustomerDto>); //this uses a select list because of the fact that this method returns a list of objects
+                .Select(Mapper.Map<Customer, CustomerDto>);
+
+            return Ok(customersDto);
+            
+            
         }
 
         //GET /api/customers/1
