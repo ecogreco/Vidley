@@ -29,8 +29,9 @@ namespace Vidley
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-lumin.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
-                      "~/Content/typeahead.css",
+                      "~/Content/typeaheadtheme.css",
                       "~/Content/toastr.css",
+                      "~/Content/bootstrap-theme.css",
                       "~/Content/Site.css"));
         }
     }
