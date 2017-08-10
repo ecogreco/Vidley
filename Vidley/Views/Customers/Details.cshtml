@@ -11,7 +11,7 @@
     if (Model.Birthday != null)
     {
         <ul>
-            <li>@Model.MembershipType.Type</li>
+            <li>@Model.MembershipType.Name</li>
             <li>@Model.Birthday.Value.ToShortDateString()</li>
         </ul>
     }
@@ -19,7 +19,7 @@
     else
     {
         <ul>
-            <li>@Model.MembershipType.Type</li>
+            <li>@Model.MembershipType.Name</li>
         </ul>
     }
 }
