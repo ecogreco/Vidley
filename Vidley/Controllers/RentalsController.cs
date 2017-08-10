@@ -24,45 +24,45 @@ namespace Vidley.Controllers
             return View();
         }
 
-        public ActionResult Return()
-        {
-            var viewModel = new ReturnMovieViewModel();
-            return View(viewModel);
-        }
+        //public ActionResult Return()
+        //{
+        //    var viewModel = new ReturnMovieViewModel();
+        //    return View(viewModel);
+        //}
 
        
-        [ValidateAntiForgeryToken]
-        public ActionResult Returned(ReturnMovieViewModel movie)
-        {
-            if(!ModelState.IsValid)
-            {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Returned(ReturnMovieViewModel movie)
+        //{
+        //    if(!ModelState.IsValid)
+        //    {
+        //        throw new HttpResponseException(HttpStatusCode.BadRequest);
                 
-            }
+        //    }
 
             
 
-            try
-            {
-                var movieInDB = _context.Movies.Single(m => m.Name == movie.Name);
-                if (movieInDB.NumberAvailable >= movieInDB.NumberInStock)
-                {
-                    throw new HttpResponseException(HttpStatusCode.BadRequest);
-                }
-                movieInDB.NumberAvailable++;
-                _context.SaveChanges();
-            }
+        //    try
+        //    {
+        //        var movieInDB = _context.Movies.Single(m => m.Name == movie.Name);
+        //        if (movieInDB.NumberAvailable >= movieInDB.NumberInStock)
+        //        {
+        //            throw new HttpResponseException(HttpStatusCode.BadRequest);
+        //        }
+        //        movieInDB.NumberAvailable++;
+        //        _context.SaveChanges();
+        //    }
             
 
-            catch(Exception e)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
+        //    catch(Exception e)
+        //    {
+        //        throw new HttpResponseException(HttpStatusCode.NotFound);
+        //    }
             
            
 
-            return RedirectToAction("Return", "Rentals");
-        }
+        //    return RedirectToAction("Return", "Rentals");
+        //}
     }
 
 }
