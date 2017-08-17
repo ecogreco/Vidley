@@ -1,0 +1,5 @@
+
+
+Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True
+
+Server=65ad2094-a1ed-4acc-b472-a7cc0157454d.sqlserver.sequelizer.com;Database=db65ad2094a1ed4accb472a7cc0157454d;User ID=obauymulvlgibspw;Password=ojjP4avGy5U4opVoKYjpgjSNwLGubvNVXAF6DqnHQzybQ4mKMaRmHvVezCsrAaFc;
